@@ -1,5 +1,5 @@
 
-from stats import word_count, letter_count
+from stats import word_count, letter_count, sort_letters
 
 def get_book_text(path):
 
@@ -7,10 +7,29 @@ def get_book_text(path):
         return f.read()
 
 def main():
-    text = get_book_text("books/frankenstein.txt")
-    print(text)
-    print(word_count(text))
-    print(letter_count(text))
+    book_path = "books/frankenstein.txt"
+    text = get_book_text(book_path)
+
+    num_words = word_count(text)                # get integer count here
+    counts_dict = letter_count(text)
+    sorted_counts = sort_letters(counts_dict)
+
+    print_report(book_path, num_words, sorted_counts)  # pass int, not function
+
+def print_report(book_path, word_count, sorted_counts):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count -----------")
+    print(f"Found {word_count} total words")  # word_count is now an int
+    print("--------- Character Count -------")
+    for item in sorted_counts:
+        if not item["char"].isalpha():
+            continue
+        print(f"{item['char']}: {item['num']}")
+    print("============= END ===============")
+
+        
+
 
 main()
 
