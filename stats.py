@@ -1,11 +1,11 @@
 def word_count(text):
     words = text.split()
-    return = len(words)
+    return len(words)
     
 def letter_count(text):
     counts = {}
     for letter in text.lower():
-        counts[letter] = counts.get(letter,0) + 1
+        counts[letter] = counts.get(letter, 0) + 1
     return counts
 
 def sort_on(item):
